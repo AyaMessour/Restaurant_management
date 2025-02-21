@@ -114,7 +114,7 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
               <Link href={mapRoute} className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
                 Store
               </Link>
-              <Link href="Contact" className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
+              <Link href="/Contact" className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
                 Contact
               </Link>
             </div>

@@ -4,7 +4,9 @@ import burger from "./photos/hero-2.png";
 import { motion } from "framer-motion";
 import Navbar from "./Navbar"; // Import the Navbar component
 import Footer from "./Footer"; // Import the Footer component
-
+import Contact from "./Contact";
+import Categories from "./Categories";
+import Banner from "./Banner";
 function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRoute, mapRoute }) {
   return (
     <motion.div
@@ -63,10 +65,17 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
             </motion.div>
           </div>
         </div>
-      </section>
+        <Categories/>
+        <Banner/>
 
-      {/* Footer */}
-      <Footer />
+<Contact/>
+
+<Footer />
+      </section>
+   
+
+
+
       
     </motion.div>
   );
