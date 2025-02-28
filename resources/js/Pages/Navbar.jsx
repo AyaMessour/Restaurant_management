@@ -39,7 +39,7 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
       <nav
         className={`transition-all duration-300 ${
           isScrolled
-            ? "bg-stone-900 shadow-lg py-3" // Dark background with shadow when scrolled
+            ? "bg-black shadow-lg py-3" // Dark background with shadow when scrolled
             : "bg-transparent py-4"
         } w-full fixed top-10 z-50`}
       >

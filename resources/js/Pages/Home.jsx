@@ -13,7 +13,7 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="h-screen flex flex-col bg-gradient-to-br from-stone-900 via-stone-900 to-stone-900"
+      className="h-screen flex flex-col bg-black"
     >
       {/* Navbar */}
       <Navbar shopRoute={shopRoute} offreRoute={offreRoute} mapRoute={mapRoute} />
@@ -65,18 +65,12 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
             </motion.div>
           </div>
         </div>
-        <Categories/>
-        <Banner/>
-
-<Contact/>
-
-<Footer />
       </section>
-   
-
-
-
-      
+      <Banner/>
+      <Categories/>
+      <Banner/>
+      <Contact/>
+      <Footer />
     </motion.div>
   );
 }

@@ -43,7 +43,9 @@ Route::get('/Contact', function () {
     return Inertia::render('Contact');
 });
 
-
+Route::get('/Burger', function () {
+    return Inertia::render('Burger');
+});
 
 
 require __DIR__.'/auth.php';
