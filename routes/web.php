@@ -43,8 +43,8 @@ Route::get('/Contact', function () {
     return Inertia::render('Contact');
 });
 
-Route::get('/Burger', function () {
-    return Inertia::render('Burger');
+Route::get('/Restaurant', function () {
+    return Inertia::render('Restaurant');
 });
 
 

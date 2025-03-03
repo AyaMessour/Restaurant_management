@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
 import image1 from "./photos/categories/italian-cuisine/B.jpg"; // Assurez-vous que le chemin est correct
-import image2 from "./photos/categories/asian-cuisine/A.jpg";  // Assurez-vous que le chemin est correct
+import image2 from "./photos/categories/asian-cuisine/Z.jpg";  // Assurez-vous que le chemin est correct
 import image3 from "./photos/categories/mexican-food/C.jpg"; // Assurez-vous que le chemin est correct
 
 const Categories = () => {
@@ -33,12 +33,12 @@ const Categories = () => {
   return (
     <div className="bg-black py-12">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-white text-center mb-8">Explore Our Cuisines</h2>
+        <h2 className="text-6xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script  text-center mb-8">Explore Our Cuisines</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((category) => (
             <div key={category.id} className="relative group overflow-hidden rounded-lg flex flex-col">
-              {/* Image avec hauteur fixe */}
-              <div className="w-full h-64 overflow-hidden">
+              {/* Image avec bordure et hauteur fixe */}
+              <div className="w-full h-64 gap-5 overflow-hidden border-4 border-gray-300 rounded-lg">
                 <img
                   src={category.image}
                   alt={category.name}

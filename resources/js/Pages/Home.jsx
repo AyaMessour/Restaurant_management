@@ -7,6 +7,8 @@ import Footer from "./Footer"; // Import the Footer component
 import Contact from "./Contact";
 import Categories from "./Categories";
 import Banner from "./Banner";
+import Restaurant from "./Restaurant";
+
 function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRoute, mapRoute }) {
   return (
     <motion.div
@@ -29,8 +31,8 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <img src={burger} className="w-100 rounded-lg shadow-lg" alt="Hero" />
-              {/* Price Badge */}
+<img src={burger} className="w-90 rounded-lg shadow-lg animate-rotate-scale-up-normal" alt="Hero" />
+{/* Price Badge */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -49,12 +51,15 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-center lg:text-left text-white"
             >
-              <h1 className="text-4xl font-bold font-poppins">New Burger</h1>
-              <h2 className="text-2xl mt-2 font-poppins">With Double MEAT</h2>
-              <p className="mt-4 text-gray-300 font-sans">
-                Feugiat primis ligula risus auctor laoreet augue egestas mauris
-                viverra tortor in iaculis pretium at magna mauris ipsum primis
-                rhoncus feugiat.
+             
+              <h4 className="text-7xl font-dancing-script bg-gradient-to-r from-yellow-400 to-red-600 bg-clip-text text-transparent mx-auto">
+                New Burger
+              </h4>
+              <h2 className="text-2xl mt-2 font-poppins text-center lg:text-left bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                With Double MEAT
+              </h2>
+              <p className="mt-4 text-gray-300 font-sans text-center lg:text-left">
+                Feugiat primis ligula risus auctor laoreet augue egestas mauris viverra tortor in iaculis pretium at magna mauris ipsum primis rhoncus feugiat.
               </p>
               <Link
                 href="/"
@@ -63,14 +68,15 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
                 Order Now
               </Link>
             </motion.div>
+
           </div>
         </div>
+        <Categories />
+        {/* <Banner /> */}
+        <Restaurant/>
+        <Contact />
+        <Footer />
       </section>
-      <Banner/>
-      <Categories/>
-      <Banner/>
-      <Contact/>
-      <Footer />
     </motion.div>
   );
 }

@@ -6,6 +6,29 @@ import Logo from "./photos/L.png"; // Ensure this path is correct
 function Navbar({ shopRoute, offreRoute, mapRoute }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [bannerText, setBannerText] = useState("Free Shipping On All MOROCCO Orders 500dh+");
+
+  const banners = [
+    "Free Shipping On All MOROCCO Orders 500dh+",
+    "20% Off On Your First Order!",
+    "Try Our New Seasonal Menu!"
+  ];
+
+  // Change the banner every 2 seconds
+  useEffect(() => {
+    const bannerInterval = setInterval(() => {
+      setBannerText((prevText) => {
+        const currentIndex = banners.indexOf(prevText);
+        const nextIndex = (currentIndex + 1) % banners.length;
+        return banners[nextIndex];
+      });
+    }, 2000);
+
+    // Cleanup interval on component unmount
+    return () => {
+      clearInterval(bannerInterval);
+    };
+  }, [banners]);
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
@@ -32,16 +55,12 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
     <header className="w-full fixed top-0 z-50">
       {/* Top Banner */}
       <div className="bg-red-600 text-white text-sm py-2 text-center font-sans">
-        Free Shipping On All MOROCCO Orders 500dh+
+        {bannerText}
       </div>
 
       {/* Navigation Menu */}
       <nav
-        className={`transition-all duration-300 ${
-          isScrolled
-            ? "bg-black shadow-lg py-3" // Dark background with shadow when scrolled
-            : "bg-transparent py-4"
-        } w-full fixed top-10 z-50`}
+        className={`transition-all duration-300 ${isScrolled ? "bg-black shadow-lg py-3" : "bg-transparent py-4"} w-full fixed top-10 z-50`}
       >
         <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
           {/* Logo */}
@@ -62,12 +81,6 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
             </Link>
             <Link href={offreRoute} className="text-white hover:text-red-600 font-medium transition duration-300">
               About
-            </Link>
-            <Link href={mapRoute} className="text-white hover:text-red-600 font-medium transition duration-300">
-              Store
-            </Link>
-            <Link href="/Contact" className="text-white hover:text-red-600 font-medium transition duration-300">
-              Contact
             </Link>
 
             {/* Cart and User Icons */}

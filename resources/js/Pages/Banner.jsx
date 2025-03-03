@@ -2,37 +2,36 @@ import React, { useState } from "react";
 import bn from "./photos/N.jpg";
 
 const Banner = () => {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleImageClick = () => {
-    setIsClicked(!isClicked);
-  };
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-<div className="relative w-full h-[360px] cursor-pointer overflow-hidden" onClick={handleImageClick}>
-{/* Image with transition */}
+    <div
+      className="relative w-full h-[200px] sm:h-[360px] md:h-[450px] cursor-pointer overflow-hidden shadow-lg rounded-lg"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Image with shadow and smooth scaling effect */}
       <img
         src={bn}
         alt="Banner"
-        className={`w-full h-auto object-cover transition-transform duration-500 ease-in-out ${
-          isClicked ? "scale-110" : "scale-100"
-        }`}
+        className={`w-full h-full object-cover transition-transform duration-500 ease-in-out ${
+          isHovered ? "scale-110" : "scale-100"
+        } shadow-xl`}
       />
-      {/* Overlay with fade effect */}
+
+      {/* Overlay with fade effect on hover */}
       <div
         className={`absolute top-0 left-0 w-full h-full bg-black transition-opacity duration-500 ${
-          isClicked ? "opacity-30" : "opacity-50"
+          isHovered ? "opacity-40" : "opacity-60"
         }`}
       ></div>
 
       {/* Overlay content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 sm:px-8 text-center">
-        <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4">
+        <h1 className="text-xl sm:text-3xl md:text-5xl font-extrabold mb-4">
           SECRETS FROM THE KITCHEN
         </h1>
       </div>
-      <br />
-      
     </div>
   );
 };
