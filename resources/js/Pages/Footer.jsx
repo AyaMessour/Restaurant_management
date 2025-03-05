@@ -55,8 +55,8 @@ export default function Footer({ home }) {
 
         {/* Footer Bottom */}
         <div className="mt-10 flex flex-col md:flex-row justify-between items-center border-t border-white/50 pt-5">
-          <p>© 2025 Lily's Coffee. All rights reserved.</p>
-          <img src={logo} width="150" alt="Lily's Coffee Logo" />
+          <p>© 2025 Lily's Restaurant. All rights reserved.</p>
+          <img src={logo} width="130" alt="Lily's Coffee Logo" />
           {/* Payment Methods */}
           <div className="flex flex-col items-center space-y-5 mt-3 md:mt-0">
             <img src={payImage} width="200" alt="Payment Methods" />

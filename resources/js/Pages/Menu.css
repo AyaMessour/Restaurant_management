@@ -1,0 +1,20 @@
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+  
+  .animated-veg {
+    position: absolute;
+    width: 120px; /* Adjust size */
+    animation: float 5s infinite ease-in-out;
+  }
+  
+  /* Adjust positions to avoid overlap */
+  .veg1 {left : 15%; left: 5%; }
+  .veg2 { right: 10%; animation-delay: 1s; }
+  .veg3 { top: 18%; left: 30%; animation-delay: 2s; }
+  .veg4 { top: 20%; right: 30%; animation-delay: 3s; }
+  .veg5 { left : 25%; animation-delay: 4s; }
+  .veg6 { right: 19%; left: 60%; transform: translateX(-50%); animation-delay: 5s; }
+  

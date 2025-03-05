@@ -18,7 +18,7 @@ const Restaurant = () => {
     <div className="w-full bg-black py-10">
       <div className="w-full max-w-4xl mx-auto text-center">
         {/* Title */}
-        <h1 className="text-6xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script  mb-4">
+        <h1 className="text-6xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script mb-4">
           Welcome to Our Restaurant
         </h1>
 
@@ -32,18 +32,39 @@ const Restaurant = () => {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={20}
           slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          pagination={{ clickable: true, el: ".swiper-pagination" }}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          className="rounded-lg shadow-lg"
+          className="rounded-lg shadow-lg relative"
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
               <img src={img} alt={`Restaurant ${index + 1}`} className="w-full h-96 object-cover rounded-lg" />
             </SwiperSlide>
           ))}
+
+          {/* Custom Navigation Buttons */}
+          <div className="swiper-button-next text-white"></div>
+          <div className="swiper-button-prev text-white"></div>
+
+          {/* Custom Pagination Dots */}
+          <div className="swiper-pagination text-white"></div>
         </Swiper>
       </div>
+
+      {/* Swiper CSS Styling */}
+      <style jsx global>{`
+        .swiper-button-next,
+        .swiper-button-prev {
+          color: white !important;
+        }
+        .swiper-pagination-bullet {
+          background-color: white !important;
+        }
+      `}</style>
     </div>
   );
 };

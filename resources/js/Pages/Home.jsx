@@ -9,6 +9,8 @@ import Categories from "./Categories";
 import Banner from "./Banner";
 import Restaurant from "./Restaurant";
 
+
+
 function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRoute, mapRoute }) {
   return (
     <motion.div
@@ -55,6 +57,8 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
               <h4 className="text-7xl font-dancing-script bg-gradient-to-r from-yellow-400 to-red-600 bg-clip-text text-transparent mx-auto">
                 New Burger
               </h4>
+
+ 
               <h2 className="text-2xl mt-2 font-poppins text-center lg:text-left bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
                 With Double MEAT
               </h2>

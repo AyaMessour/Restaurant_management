@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "@inertiajs/react";
-import { FaBars, FaTimes, FaShoppingCart, FaUser } from "react-icons/fa"; // Icons for the mobile menu and user/cart
-import Logo from "./photos/L.png"; // Ensure this path is correct
+import { FaBars, FaTimes, FaShoppingCart, FaUser } from "react-icons/fa";
+import Logo from "./photos/L.png"; // Ensure the path is correct
 
 function Navbar({ shopRoute, offreRoute, mapRoute }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [bannerText, setBannerText] = useState("Free Shipping On All MOROCCO Orders 500dh+");
+  const mobileMenuRef = useRef(null);
 
   const banners = [
     "Free Shipping On All MOROCCO Orders 500dh+",
@@ -14,7 +15,7 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
     "Try Our New Seasonal Menu!"
   ];
 
-  // Change the banner every 2 seconds
+  // Rotate banners every 2 seconds
   useEffect(() => {
     const bannerInterval = setInterval(() => {
       setBannerText((prevText) => {
@@ -24,43 +25,46 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
       });
     }, 2000);
 
-    // Cleanup interval on component unmount
-    return () => {
-      clearInterval(bannerInterval);
-    };
-  }, [banners]);
+    return () => clearInterval(bannerInterval);
+  }, []);
 
-  // Toggle mobile menu
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  // Detect scrolling to apply background and shadow
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (isMobileMenuOpen && mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isMobileMenuOpen]);
+
+  // Get current path for highlighting active link
+  const currentPath = window.location.pathname;
 
   return (
     <header className="w-full fixed top-0 z-50">
       {/* Top Banner */}
-      <div className="bg-red-600 text-white text-sm py-2 text-center font-sans">
+      <div className="bg-red-600 text-white  h-19 text-sm py-2 text-center font-sans">
         {bannerText}
       </div>
 
       {/* Navigation Menu */}
       <nav
-        className={`transition-all duration-300 ${isScrolled ? "bg-black shadow-lg py-3" : "bg-transparent py-4"} w-full fixed top-10 z-50`}
+        className={`transition-all duration-300 ${
+          isScrolled ? "bg-black shadow-lg py-3" : "bg-transparent py-4"
+        } w-full fixed top-10 z-50`}
       >
         <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
           {/* Logo */}
@@ -70,18 +74,22 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-8 items-center">
-            <Link href="/" className="text-white hover:text-red-600 font-medium transition duration-300">
-              Acceuil
-            </Link>
-            <Link href="#menu" className="text-white hover:text-red-600 font-medium transition duration-300">
-              Menu
-            </Link>
-            <Link href={shopRoute} className="text-white hover:text-red-600 font-medium transition duration-300">
-              Booking Table
-            </Link>
-            <Link href={offreRoute} className="text-white hover:text-red-600 font-medium transition duration-300">
-              About
-            </Link>
+            {[
+              { path: "/", label: "Acceuil" },
+              { path: "Menu", label: "Menu" },
+              { path: shopRoute, label: "Booking Table" },
+              { path: offreRoute, label: "About" }
+            ].map(({ path, label }) => (
+              <Link
+                key={label}
+                href={path}
+                className={`text-white font-medium transition duration-300 ${
+                  currentPath === path ? "text-red-600 font-bold" : "hover:text-red-600"
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
 
             {/* Cart and User Icons */}
             <div className="flex space-x-6 ml-8">
@@ -102,37 +110,42 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
             <Link href="/profile" className="text-white hover:text-red-600 transition duration-300">
               <FaUser size={20} />
             </Link>
-            <button onClick={toggleMobileMenu} className="text-white focus:outline-none">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white focus:outline-none"
+            >
               {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-stone-900 bg-opacity-95 backdrop-blur-md">
-            <div className="flex flex-col space-y-4 py-4 px-6">
-              <Link href="/" className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
-                Acceuil
+        <div
+          ref={mobileMenuRef}
+          className={`lg:hidden mobile-menu fixed top-16 left-0 w-full bg-black duration-300 ease-in-out ${
+            isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+          }`}
+        >
+          <div className="flex flex-col space-y-4 py-4 px-6">
+            {[
+              { path: "/", label: "Acceuil" },
+              { path: "Menu", label: "Menu" },
+              { path: shopRoute, label: "Booking Table" },
+              { path: offreRoute, label: "About" },
+              { path: mapRoute, label: "Store" },
+              { path: "/Contact", label: "Contact" }
+            ].map(({ path, label }) => (
+              <Link
+                key={label}
+                href={path}
+                className="text-white hover:text-red-600 font-medium transition duration-300"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {label}
               </Link>
-              <Link href="#menu" className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
-                Menu
-              </Link>
-              <Link href={shopRoute} className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
-                Booking Table
-              </Link>
-              <Link href={offreRoute} className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
-                About
-              </Link>
-              <Link href={mapRoute} className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
-                Store
-              </Link>
-              <Link href="/Contact" className="text-white hover:text-red-600 font-medium transition duration-300" onClick={toggleMobileMenu}>
-                Contact
-              </Link>
-            </div>
+            ))}
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );

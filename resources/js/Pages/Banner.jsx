@@ -28,9 +28,9 @@ const Banner = () => {
 
       {/* Overlay content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 sm:px-8 text-center">
-        <h1 className="text-xl sm:text-3xl md:text-5xl font-extrabold mb-4">
+        {/* <h1 className="text-xl sm:text-3xl md:text-5xl font-extrabold mb-4">
           SECRETS FROM THE KITCHEN
-        </h1>
+        </h1> */}
       </div>
     </div>
   );

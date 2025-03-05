@@ -28,6 +28,8 @@ const Categories = () => {
       description: 'Plongez dans les saveurs épicées de la cuisine mexicaine.',
       link: '/mexican-cuisine',
     },
+ 
+    
   ];
 
   return (
