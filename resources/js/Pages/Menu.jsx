@@ -81,67 +81,42 @@ const Menu = () => {
  
   ];
 
+
   const filteredItems = menuItems.filter(item => 
     item.name.toLowerCase().includes(search.toLowerCase()) || 
     item.category.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="menu bg-black min-h-screen relative overflow-hidden">
-  {/* Floating Vegetables */}
-
-      {/* Navbar */}
+    <div className="menu bg-black min-h-screen relative overflow-hidden text-white">
       <Navbar shopRoute="/booking" offreRoute="/about" mapRoute="/store" />
-      
-      {/* Banner */}
       <Banner />
 
-      <div className="container mx-auto p-4 md:p-10 pt-20">
-        {/* Search Input */}
+      <div className="container mx-auto p-6 md:p-12 pt-20">
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search for a dish or category (e.g., Desserts, Drinks)"
-          className="p-2 w-full md:w-1/2 lg:w-1/3 border border-gray-300 rounded-lg mb-6 mx-auto block"
+          placeholder="Search for a dish or category..."
+          className="p-3 w-full md:w-1/2 lg:w-1/3 border border-gray-500 rounded-lg mb-6 mx-auto block bg-gray-900 text-white placeholder-gray-400"
         />
-                          <img src={veg1} alt="Veg1" className="animated-veg veg1" />
-  <img src={veg2} alt="Veg2" className="animated-veg veg2" />
-  <img src={veg3} alt="Spice" className="animated-veg veg3" />
-  <img src={veg4} alt="Veg1" className="animated-veg veg4" />
-  <img src={veg5} alt="Veg2" className="animated-veg veg5" />
-  <img src={veg6} alt="Spice" className="animated-veg veg6" />
-  
 
-        {/* Menu Title */}
-        <h1 className="text-4xl md:text-6xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script text-center mb-6">
+        <h1 className="text-5xl md:text-7xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script text-center mb-10">
           Our Menu
         </h1>
- 
 
-        {/* Menu Items */}
-        <div className="flex flex-wrap justify-center gap-10 p-4"> {/* Flexbox container */}
-        {filteredItems.map(item => (
-          <div 
-            key={item.id} 
-            className="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 flex flex-col w-48" // Fixed width for cards
-          >
-            {/* Image */}
-            <img 
-              src={item.image} 
-              alt={item.name} 
-              className="w-full h-48 object-cover" // Fixed height for images
-            />
-            
-            {/* Card Content */}
-            <div className="p-4 flex flex-col flex-grow">
-              <h3 className="text-xl font-semibold">{item.name}</h3>
-              <p className="text-gray-600 flex-grow">{item.description}</p>
-              <p className="text-sm text-gray-500 italic">{item.category}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
+          {filteredItems.map(item => (
+            <div key={item.id} className="bg-gray-800 shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl">
+              <img src={item.image} alt={item.name} className="w-full h-56 object-cover" />
+              <div className="p-5 flex flex-col">
+                <h3 className="text-xl font-semibold text-yellow-400">{item.name}</h3>
+                <p className="text-gray-300 mt-2">{item.description}</p>
+                <p className="text-sm text-gray-400 mt-1 italic">{item.category}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -47,5 +47,12 @@ Route::get('/Menu', function () {
     return Inertia::render('Menu');
 });
 
+Route::get('/Offres', function () {
+    return Inertia::render('Offres');
+});
 
+
+Route::get('/BookingTable', function () {
+    return Inertia::render('BookingTable');
+});
 require __DIR__.'/auth.php';

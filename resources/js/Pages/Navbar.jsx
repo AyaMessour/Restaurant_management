@@ -78,7 +78,7 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
               { path: "/", label: "Acceuil" },
               { path: "Menu", label: "Menu" },
               { path: shopRoute, label: "Booking Table" },
-              { path: offreRoute, label: "About" }
+              { path: "/Offres", label: "Offre" }
             ].map(({ path, label }) => (
               <Link
                 key={label}

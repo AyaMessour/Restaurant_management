@@ -8,11 +8,13 @@ import Contact from "./Contact";
 import Categories from "./Categories";
 import Banner from "./Banner";
 import Restaurant from "./Restaurant";
-
+import RestaurantServices from "./Services";
+import Offres from "./Offres";
 
 
 function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRoute, mapRoute }) {
   return (
+    <>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -78,10 +80,13 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
         <Categories />
         {/* <Banner /> */}
         <Restaurant/>
+    
         <Contact />
+        <RestaurantServices></RestaurantServices>
         <Footer />
       </section>
     </motion.div>
+    </>
   );
 }
 
