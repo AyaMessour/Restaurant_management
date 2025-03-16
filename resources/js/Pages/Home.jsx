@@ -10,6 +10,7 @@ import Banner from "./Banner";
 import Restaurant from "./Restaurant";
 import RestaurantServices from "./Services";
 import Offres from "./Offres";
+import Manner from "./Manner";
 
 
 function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRoute, mapRoute }) {
@@ -78,10 +79,12 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
           </div>
         </div>
         <Categories />
+      
         {/* <Banner /> */}
         <Restaurant/>
-    
+  
         <Contact />
+        <Manner/>
         <RestaurantServices></RestaurantServices>
         <Footer />
       </section>

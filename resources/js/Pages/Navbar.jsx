@@ -5,7 +5,6 @@ import Logo from "./photos/L.png"; // Ensure the path is correct
 
 function Navbar({ shopRoute, offreRoute, mapRoute }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [bannerText, setBannerText] = useState("Free Shipping On All MOROCCO Orders 500dh+");
   const mobileMenuRef = useRef(null);
 
@@ -28,16 +27,6 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
     return () => clearInterval(bannerInterval);
   }, []);
 
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -56,17 +45,13 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
   return (
     <header className="w-full fixed top-0 z-50">
       {/* Top Banner */}
-      <div className="bg-red-600 text-white  h-19 text-sm py-2 text-center font-sans">
+      <div className="bg-red-600 text-white h-19 text-sm py-2 text-center font-sans">
         {bannerText}
       </div>
 
       {/* Navigation Menu */}
-      <nav
-        className={`transition-all duration-300 ${
-          isScrolled ? "bg-black shadow-lg py-3" : "bg-transparent py-4"
-        } w-full fixed top-10 z-50`}
-      >
-        <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+      <nav className="w-full fixed top-0 left-0  py-4 ">
+      <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
             <img src={Logo} alt="Logo" className="h-13 w-24" />
@@ -77,13 +62,13 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
             {[
               { path: "/", label: "Acceuil" },
               { path: "Menu", label: "Menu" },
-              { path: shopRoute, label: "Booking Table" },
+              { path: "/BookingTable", label: "Booking Table" },
               { path: "/Offres", label: "Offre" }
             ].map(({ path, label }) => (
               <Link
                 key={label}
                 href={path}
-                className={`text-white font-medium transition duration-300 ${
+                className={`text-white text-lg font-semibold ${
                   currentPath === path ? "text-red-600 font-bold" : "hover:text-red-600"
                 }`}
               >
@@ -93,10 +78,10 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
 
             {/* Cart and User Icons */}
             <div className="flex space-x-6 ml-8">
-              <Link href="/cart" className="text-white hover:text-red-600 transition duration-300">
+              <Link href="/cart" className="text-white hover:text-red-600">
                 <FaShoppingCart size={20} />
               </Link>
-              <Link href="/profile" className="text-white hover:text-red-600 transition duration-300">
+              <Link href="/profile" className="text-white hover:text-red-600">
                 <FaUser size={20} />
               </Link>
             </div>
@@ -104,10 +89,10 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center space-x-6 lg:hidden">
-            <Link href="/cart" className="text-white hover:text-red-600 transition duration-300">
+            <Link href="/cart" className="text-white hover:text-red-600">
               <FaShoppingCart size={20} />
             </Link>
-            <Link href="/profile" className="text-white hover:text-red-600 transition duration-300">
+            <Link href="/profile" className="text-white hover:text-red-600">
               <FaUser size={20} />
             </Link>
             <button
@@ -122,7 +107,7 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
         {/* Mobile Menu */}
         <div
           ref={mobileMenuRef}
-          className={`lg:hidden mobile-menu fixed top-16 left-0 w-full bg-black duration-300 ease-in-out ${
+          className={`lg:hidden mobile-menu fixed top-16 left-0 w-full bg-black ${
             isMobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
           }`}
         >
@@ -138,7 +123,7 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
               <Link
                 key={label}
                 href={path}
-                className="text-white hover:text-red-600 font-medium transition duration-300"
+                className="text-white hover:text-red-600 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {label}
