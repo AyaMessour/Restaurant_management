@@ -14,7 +14,7 @@ import offre11 from './photos/Categories/offre-11.jpg';
 import offre12 from './photos/Categories/offre-12.jpg';
 import offre17 from './photos/Categories/offre-17.jpg';
 
-import Manner from './Manner';
+import Manner from "./Manner.jsx";
 export default function Offres() {
   const offres = [
   
@@ -118,9 +118,10 @@ export default function Offres() {
   ];
   return (
     <>
+    <Manner></Manner>
       <Navbar />
-      <div className="mt-12"></div> {/* Ajout d'un espace sous la navbar */}
-      <div className="bg-black text-white  bottom-15 py-12">
+      <div className=""></div> {/* Ajout d'un espace sous la navbar */}
+      <div className="bg-black text-white py-12">
         <h2 className="text-3xl font-bold  text-center mb-8">🔥 Offres Spéciales 🔥</h2>
         <div className="grid md:grid-cols-3 gap-6 px-4 md:px-12">
           {offres.map((offre) => (

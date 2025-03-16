@@ -41,6 +41,7 @@ import Image29 from "./photos/Categories/asian-cuisine/Ramen.jpeg";
 import Image30 from "./photos/Categories/asian-cuisine/rice.jpeg";
 import Image31 from "./photos/Categories/asian-cuisine/salmon-suchi.jpeg";
 import Image32 from "./photos/Categories/asian-cuisine/suchi.jpeg";
+import Footer from './Footer';
 
 const Menu = () => {
   const [search, setSearch] = useState('');
@@ -118,6 +119,7 @@ const Menu = () => {
           ))}
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import bgImage from './photos/Restaux/Res.jpg';
-import Manner from './Manner';
-
+import Footer from './Footer';
 import WaitlistAccess from './Article';
+import Manner from './Manner';
+import Contact from './Contact';
+
 
 const BookingTable = () => {
   const [formData, setFormData] = useState({
@@ -40,6 +42,7 @@ const BookingTable = () => {
   };
 
   return (
+    <>
     <div
     className="relative h-auto flex flex-col items-center justify-start bg-cover bg-center mt-12 pt-32" // Increased pt-20 to pt-32
     style={{ backgroundImage: `url(${bgImage})` }} 
@@ -191,6 +194,11 @@ const BookingTable = () => {
       {/* <Manner></Manner> */}
 
     </div>
+    <WaitlistAccess/>
+    <Manner/>
+    <Contact/>
+    <Footer></Footer>
+    </>
   );
 };
 
