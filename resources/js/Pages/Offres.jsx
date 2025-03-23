@@ -15,114 +15,120 @@ import offre12 from './photos/Categories/offre-12.jpg';
 import offre17 from './photos/Categories/offre-17.jpg';
 
 import Manner from "./Manner.jsx";
+import Footer from './Footer';
+
+import { useEffect, useState } from "react";
+
+
 export default function Offres() {
+  const [globalTime, setGlobalTime] = useState(24 * 60 * 60); // 24h countdown
+
   const offres = [
-  
     {
       id: 2,
-      titre: "Pizza Familiale",
-      description: "Grande pizza 4 saisons + 1 boisson offerte.",
-      prixOriginal: "150 DH",
-      prixPromo: "129 DH",
-      image: offre2, // ✅ Correction ici
-    },
-    {
-      id: 3,
-      titre: "Dessert Gourmand",
+      titre: "Burger Dessert",
       description: "Tarte au chocolat + café offert.",
       prixOriginal: "50 DH",
       prixPromo: "39 DH",
-      image: offre3, // ✅ Correction ici
+      image: offre3,
     },
     {
-      id: 1,
-      titre: "Menu Spécial Burger",
+      id: 3,
+      titre: "Burger Royal Combo",
       description: "Un délicieux burger avec frites et boisson offerte.",
       prixOriginal: "120 DH",
       prixPromo: "99 DH",
-      image: offre4, // ✅ Correction ici
+      image: offre4,
     },
     {
-      id: 2,
-      titre: "Pizza Familiale",
+      id: 4,
+      titre: "Burger Spécial Chef",
       description: "Grande pizza 4 saisons + 1 boisson offerte.",
       prixOriginal: "150 DH",
       prixPromo: "129 DH",
-      image: offre5, // ✅ Correction ici
+      image: offre5,
     },
     {
-      id: 3,
-      titre: "Dessert Gourmand",
+      id: 5,
+      titre: "Burger Gourmand Sucré",
       description: "Tarte au chocolat + café offert.",
       prixOriginal: "50 DH",
       prixPromo: "39 DH",
-      image: offre6, // ✅ Correction ici
+      image: offre6,
     },
     {
-      id: 2,
-      titre: "Pizza Familiale",
-      description: "Grande pizza 4 saisons + 1 boisson offerte.",
+      id: 6,
+      titre: "Shawarma Familiale",
+      description: "Grande schawrma 3 saisons + 1 boisson offerte.",
       prixOriginal: "150 DH",
       prixPromo: "129 DH",
-      image: offre7, // ✅ Correction ici
+      image: offre7,
     },
     {
-      id: 3,
-      titre: "Dessert Gourmand",
-      description: "Tarte au chocolat + café offert.",
+      id: 7,
+      titre: "Chicken Pizza",
+      description: "Chiken pizza with cheese and olives + soda offert.",
       prixOriginal: "50 DH",
       prixPromo: "39 DH",
-      image: offre8, // ✅ Correction ici
+      image: offre8,
     },
     {
-      id: 1,
-      titre: "Menu Spécial Burger",
-      description: "Un délicieux burger avec frites et boisson offerte.",
+      id: 8,
+      titre: "Menu Spécial pizza",
+      description: "Un délicieux pizza avec frites et boisson offerte.",
       prixOriginal: "120 DH",
       prixPromo: "99 DH",
-      image: offre9, // ✅ Correction ici
+      image: offre9,
     },
     {
-      id: 2,
-      titre: "Pizza Familiale",
-      description: "Grande pizza 4 saisons + 1 boisson offerte.",
+      id: 9,
+      titre: "Beef Shawarma",
+      description: "Grande beef shawarma saisons + 1 boisson offerte.",
       prixOriginal: "150 DH",
       prixPromo: "129 DH",
-      image: offre10, // ✅ Correction ici
+      image: offre12,
     },
     {
-      id: 3,
-      titre: "Dessert Gourmand",
+      id: 10,
+      titre: "Pizza Familiale",
       description: "Tarte au chocolat + café offert.",
       prixOriginal: "50 DH",
       prixPromo: "39 DH",
-      image: offre11, // ✅ Correction ici
+      image: offre17,
     },
-    {
-      id: 2,
-      titre: "Pizza Familiale",
-      description: "Grande pizza 4 saisons + 1 boisson offerte.",
-      prixOriginal: "150 DH",
-      prixPromo: "129 DH",
-      image: offre12, // ✅ Correction ici
-    },
-   
-    {
-      id: 3,
-      titre: "Dessert Gourmand",
-      description: "Tarte au chocolat + café offert.",
-      prixOriginal: "50 DH",
-      prixPromo: "39 DH",
-      image: offre17, // ✅ Correction ici
-    },
+    // ... other offers
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGlobalTime((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (seconds) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h}h ${m}m ${s}s`;
+  };
+
   return (
     <>
-    <Manner></Manner>
+      <Manner />
       <Navbar />
-      <div className=""></div> {/* Ajout d'un espace sous la navbar */}
+
+      {/* 🔔 Global Alarme */}
+      <div className="bg-red-600 text-white text-center py-4 font-bold">
+        {globalTime > 0 
+          ? `⚡ Offre Flash : Expire dans ${formatTime(globalTime)} ⚡`
+          : "⚠️ Offre Flash Expirée"}
+      </div>
+
+      {/* Offers Grid */}
       <div className="bg-black text-white py-12">
-        <h2 className="text-3xl font-bold  text-center mb-8">🔥 Offres Spéciales 🔥</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">🔥 Offres Spéciales 🔥</h2>
         <div className="grid md:grid-cols-3 gap-6 px-4 md:px-12">
           {offres.map((offre) => (
             <div
@@ -137,11 +143,16 @@ export default function Offres() {
                   <span className="line-through text-gray-400">{offre.prixOriginal}</span>
                   <span className="text-green-400 text-lg font-bold">{offre.prixPromo}</span>
                 </div>
+                <button className="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition duration-300">
+                  Ajouter au panier
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }

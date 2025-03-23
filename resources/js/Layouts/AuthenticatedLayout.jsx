@@ -21,9 +21,9 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                {/* <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
-                                </NavLink>
+                                </NavLink> */}
                             </div>
                         </div>
 
@@ -53,13 +53,19 @@ export default function Authenticated({ auth, header, children }) {
                                             </button>
                                         </span>
                                     </Dropdown.Trigger>
-
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                        <Dropdown.Link href={route('logout')} method="post" as="button">
-                                            Log Out
-                                        </Dropdown.Link>
-                                    </Dropdown.Content>
+    {/* Only show this link for admins */}
+    {auth.user.is_admin && (
+        <Dropdown.Link href={route('admin.dashboard')}>
+            Dashboard Admin
+        </Dropdown.Link>
+    )}
+    <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+    <Dropdown.Link href={route('logout')} method="post" as="button">
+        Log Out
+    </Dropdown.Link>
+</Dropdown.Content>
+
                                 </Dropdown>
                             </div>
                         </div>

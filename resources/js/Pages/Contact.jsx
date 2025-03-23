@@ -17,7 +17,7 @@ function Contact() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   };
 
@@ -30,7 +30,7 @@ function Contact() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   };
 
