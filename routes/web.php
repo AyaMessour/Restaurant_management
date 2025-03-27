@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Cart;
@@ -99,5 +100,19 @@ Route::middleware('auth')->group(function () {
     
     
 });
+
+
+Route::middleware('auth')->get('/checkout', [CartController::class, 'checkout'])->name('checkout');   
+Route::middleware('auth')->post('/order', [CartController::class, 'placeOrder'])->name('order.place');
+
+// You can also add:
+
+Route::get('/order-confirmation', [CartController::class, 'orderConfirmation'])->name('orders.confirmation');
+Route::get('/order/confirmation', [CartController::class, 'orderConfirmation'])->name('order.confirmation');
+Route::patch('/cart/increase/{id}', [CartController::class, 'increaseQuantity']);
+Route::patch('/cart/decrease/{id}', [CartController::class, 'decreaseQuantity']);
+
+
+
 
 require __DIR__.'/auth.php';

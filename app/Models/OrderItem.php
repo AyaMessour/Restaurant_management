@@ -1,20 +1,25 @@
 <?php
 
+// app/Models/OrderItem.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Product; // Make sure this is correctly imported
 
-class Cart extends Model
+class OrderItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'product_id', 'quantity','total_price'];
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'quantity',
+        'price',
+    ];
 
-    public function Product()
+    public function product()
     {
         return $this->belongsTo(Product::class);
     }
-  
 }

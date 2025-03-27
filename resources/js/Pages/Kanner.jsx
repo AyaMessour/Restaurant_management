@@ -21,6 +21,7 @@ const Kanner = () => {
           isHovered ? "scale-110" : "scale-100"
         } shadow-xl`}
       />
+      
 
       {/* Overlay with fade effect on hover */}
       {/* <div

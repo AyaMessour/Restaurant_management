@@ -50,7 +50,7 @@ function Navbar({ shopRoute, offreRoute, mapRoute }) {
       </div>
 
       {/* Navigation Menu */}
-      <nav className="w-full fixed top-0 left-0  py-4 ">
+      <nav className="w-full fixed ">
       <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
           {/* Logo */}
           <Link href="/">

@@ -69,7 +69,7 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
                 Feugiat primis ligula risus auctor laoreet augue egestas mauris viverra tortor in iaculis pretium at magna mauris ipsum primis rhoncus feugiat.
               </p>
               <Link
-                href="/"
+                href="/Menu"
                 className="mt-6 inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 font-poppins"
               >
                 Order Now
