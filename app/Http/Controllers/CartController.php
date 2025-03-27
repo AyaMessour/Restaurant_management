@@ -58,6 +58,7 @@ class CartController extends Controller
             Cart::create([
                 'user_id' => auth()->id(),
                 'product_id' => $product->id,
+                'product_name'=>$product->name,
                 'quantity' => $request->quantity ?? 1,
                 'total_price' => $totalPrice,
             ]);
@@ -160,6 +161,7 @@ public function decreaseQuantity($id)
             'user_id' => auth()->id(),
             'first_name' => $request->firstName,
             'last_name' => $request->lastName,
+            'product_name'=>$request->product_name,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
@@ -180,8 +182,10 @@ public function decreaseQuantity($id)
         foreach ($cartItems as $cartItem) {
             $order->items()->create([
                 'product_id' => $cartItem->product_id,
+                'product_name'=>$cartItem->product_name,
                 'quantity' => $cartItem->quantity,
                 'price' => $cartItem->product->newPrice,
+
             ]);
         }
     

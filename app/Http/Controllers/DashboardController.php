@@ -16,7 +16,7 @@ class DashboardController extends Controller
             'id',
             'user_id',
             'total_price',
-            'status',
+           
             'created_at'
         ])->with(['user' => function($query) {
             $query->select('id', 'first_name', 'last_name', 'email');

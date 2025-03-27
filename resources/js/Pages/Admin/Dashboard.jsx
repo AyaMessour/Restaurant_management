@@ -38,6 +38,10 @@ const Dashboard = ({ reservations = [], orders = [] }) => {
     console.log("Checked Reservations: ", checkedReservations);
     // API call to update reservations would go here
   };
+  useEffect(() => {
+    console.log("Données reçues dans React:", orders);
+  }, [orders]);
+  
 
   return (
     <div className="flex min-h-screen">
@@ -92,6 +96,7 @@ const Dashboard = ({ reservations = [], orders = [] }) => {
                   <table className="w-full table-auto border-collapse border border-gray-300 mb-6">
                     <thead>
                       <tr className="bg-gray-100">
+                      <th className="px-4 py-2 text-left">ID</th>
                         <th className="px-4 py-2 text-left">Name</th>
                         <th className="px-4 py-2 text-left">Email</th>
                         <th className="px-4 py-2 text-left">Phone</th>
@@ -100,12 +105,13 @@ const Dashboard = ({ reservations = [], orders = [] }) => {
                         <th className="px-4 py-2 text-left">Time</th>
                         <th className="px-4 py-2 text-left">Type</th>
                         <th className="px-4 py-2 text-left">Request</th>
-                        <th className="px-4 py-2 text-left">Check</th>
+                   
                       </tr>
                     </thead>
                     <tbody>
                       {reservations.map((reservation) => (
                         <tr key={reservation.id} className="border-b hover:bg-gray-50">
+                                  <td className="px-4 py-2">{reservation.id}</td>
                           <td className="px-4 py-2">{reservation.first_name} {reservation.last_name}</td>
                           <td className="px-4 py-2">{reservation.email}</td>
                           <td className="px-4 py-2">{reservation.phone}</td>
@@ -115,27 +121,14 @@ const Dashboard = ({ reservations = [], orders = [] }) => {
                           <td className="px-4 py-2">{reservation.reservation_type}</td>
                           <td className="px-4 py-2 max-w-xs truncate">{reservation.special_request || '-'}</td>
                           <td className="px-4 py-2">
-                            <input
-                              type="checkbox"
-                              checked={checkedReservations.includes(reservation.id)}
-                              onChange={() => handleCheckReservation(reservation.id)}
-                              className="h-5 w-5 text-amber-700 rounded focus:ring-amber-500"
-                            />
+                            
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-                <button
-                  onClick={handleSubmit}
-                  disabled={checkedReservations.length === 0}
-                  className={`bg-gradient-to-r from-amber-700 to-orange-900 text-white p-3 rounded-md shadow-lg transition-transform ${
-                    checkedReservations.length > 0 ? 'hover:scale-105' : 'opacity-50 cursor-not-allowed'
-                  }`}
-                >
-                  Confirm Selected Reservations
-                </button>
+             
               </>
             ) : (
               <p className="text-gray-500">No reservations found</p>
@@ -188,6 +181,7 @@ const Dashboard = ({ reservations = [], orders = [] }) => {
           </>
         ) : null}
       </main>
+      
     </div>
   );
 };

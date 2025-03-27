@@ -76,7 +76,7 @@ export default function Offres() {
               key={offre.id}
               className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transform transition duration-300 hover:scale-105"
             >
-              <img src={offre.image} alt={offre.titre} className="w-full h-52 object-cover" />
+              <img src={offre.image} alt={offre.titre} className="w-full h-66 object-cover" />
               <div className="p-4">
                 <h3 className="text-xl font-semibold">{offre.titre}</h3>
                 <p className="text-gray-300 text-sm mt-2">{offre.description}</p>
