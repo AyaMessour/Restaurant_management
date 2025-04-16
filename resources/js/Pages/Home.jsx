@@ -83,9 +83,10 @@ function Home({ auth, cartRoute, loginRoute, registerRoute, shopRoute, offreRout
         {/* <Banner /> */}
         <Restaurant/>
   
-        <Contact />
+
         {/* <Manner/> */}
         <RestaurantServices></RestaurantServices>
+        <Contact />
         <Footer />
       </section>
     </motion.div>

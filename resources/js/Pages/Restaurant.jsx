@@ -15,57 +15,70 @@ const Restaurant = () => {
   const images = [img1, img2, img3, img4, img5];
 
   return (
-    <div className="w-full bg-black py-10">
-      <div className="w-full max-w-4xl mx-auto text-center">
+    <section className="w-full bg-black py-20 px-4">
+      <div className="max-w-6xl mx-auto text-center">
         {/* Title */}
-        <h1 className="text-6xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script mb-4">
+        <h1 className="text-5xl md:text-6xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script mb-6">
           Welcome to Our Restaurant
         </h1>
 
         {/* Description */}
-        <p className="text-lg text-gray-300 mb-8">
-          Experience the finest dining with our exquisite menu, crafted with the freshest ingredients and served in a cozy, elegant atmosphere. Join us for an unforgettable culinary journey.
+        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-12">
+          Experience the finest dining with our exquisite menu, crafted with the freshest ingredients and served in a cozy, elegant atmosphere.
         </p>
 
         {/* Swiper Carousel */}
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={20}
+          spaceBetween={30}
           slidesPerView={1}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           }}
           pagination={{ clickable: true, el: ".swiper-pagination" }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          className="rounded-lg shadow-lg relative"
+          className="relative rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(250,204,21,0.5)]" // yellow-400 shadow
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
-              <img src={img} alt={`Restaurant ${index + 1}`} className="w-full h-96 object-cover rounded-lg" />
+              <div className="relative">
+                <img
+                  src={img}
+                  alt={`Restaurant ${index + 1}`}
+                  className="w-full h-[500px] object-cover rounded-3xl transition-transform duration-700 ease-in-out hover:scale-105"
+                />
+              </div>
             </SwiperSlide>
           ))}
 
-          {/* Custom Navigation Buttons */}
-          <div className="swiper-button-next text-white"></div>
-          <div className="swiper-button-prev text-white"></div>
+          {/* Custom Arrows */}
+          <div className="swiper-button-next text-yellow-400 hover:text-yellow-300 scale-125"></div>
+          <div className="swiper-button-prev text-yellow-400 hover:text-yellow-300 scale-125"></div>
 
-          {/* Custom Pagination Dots */}
-          <div className="swiper-pagination text-white"></div>
+          {/* Custom Pagination */}
+          <div className="swiper-pagination mt-6"></div>
         </Swiper>
       </div>
 
-      {/* Swiper CSS Styling */}
+      {/* Custom Styles */}
       <style jsx global>{`
         .swiper-button-next,
         .swiper-button-prev {
-          color: white !important;
+          color: #facc15 !important; /* Tailwind yellow-400 */
         }
+
         .swiper-pagination-bullet {
-          background-color: white !important;
+          background-color: rgba(250, 204, 21, 0.6) !important;
+          opacity: 1 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+          background-color: #facc15 !important;
+          transform: scale(1.3);
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

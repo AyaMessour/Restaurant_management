@@ -111,7 +111,7 @@ const Menu = () => {
             </div>
           ) : (
             filteredItems.map(item => (
-              <div key={item.id} className="bg-gray-800 shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl">
+              <div key={item.id} className="bg-gradient-to-r from-gray-900 to-neutral-900 shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl">
                 <img src={item.image} alt={item.name} className="w-full h-60 object-cover" />
                 <div className="p-5 flex flex-col">
                   <h3 className="text-xl font-semibold text-yellow-400">{item.name}</h3>

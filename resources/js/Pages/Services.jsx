@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   FaUtensils,
   FaConciergeBell,
@@ -9,7 +8,6 @@ import {
   FaMugHot,
 } from "react-icons/fa";
 
-// Services data with unique IDs
 const services = [
   {
     id: 1,
@@ -49,48 +47,27 @@ const services = [
   },
 ];
 
-// Reusable styles
-const cardStyles =
-  "bg-gradient-to-r from-neutral-200 to-slate-200 p-6 shadow-lg rounded-2xl flex flex-col items-center text-white hover:scale-105 hover:shadow-2xl hover:from-red-800 hover:to-red-600 transition-transform duration-300";
-
 const RestaurantServices = () => {
   return (
-    <div className="w-full bg-black py-12 px-4 md:px-12 text-center">
-      <h1 className="text-4xl md:text-6xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent font-bold font-dancing-script text-center mb-12">
+    <section className="w-full bg-black py-24 px-6 md:px-12">
+      <h2 className="text-4xl md:text-6xl text-center font-dancing-script font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 bg-clip-text text-transparent mb-20">
         Nos Services
-      </h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 w-full gap-8">
-        {services.map((service) => (
+      </h2>
+
+      <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        {services.map(({ id, icon, title, description }) => (
           <div
-            key={service.id}
-            className={cardStyles}
-            role="article"
-            aria-label={`Service: ${service.title}`}
+            key={id}
+            className="bg-white/10 border border-white/10 p-8 rounded-3xl backdrop-blur-sm hover:bg-white/15 transition-all duration-300 text-white text-center"
           >
-            <div className="text-yellow-400 text-5xl mb-4" aria-hidden="true">
-              {service.icon}
-            </div>
-            <h3 className="text-xl text-black font-semibold mb-2">
-              {service.title}
-            </h3>
-            <p className="text-black text-center">{service.description}</p>
+            <div className="text-5xl text-yellow-400 mb-4">{icon}</div>
+            <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+            <p className="text-gray-300">{description}</p>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
-};
-
-// PropTypes for better type checking
-RestaurantServices.propTypes = {
-  services: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      icon: PropTypes.element.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-    })
-  ),
 };
 
 export default RestaurantServices;

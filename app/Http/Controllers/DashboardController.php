@@ -1,26 +1,24 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
-use App\Models\Reservation;
-use App\Models\Order;
+use App\Models\Reservation; // Assuming you have a Reservation model
 
 class DashboardController extends Controller
 {
     public function index()
-{
-    return Inertia::render('Dashboard', [
-        'reservations' => Reservation::all(),
-        'orders' => Order::select([
-            'id',
-            'user_id',
-            'total_price',
+    {
+        // Fetch reservations from the database
+        $reservations = Reservation::all(); // Adjust the query as needed
+
+        // Pass reservations to the React component
+        return Inertia::render('Dashboard', [
+            'reservations' => $reservations,
            
-            'created_at'
-        ])->with(['user' => function($query) {
-            $query->select('id', 'first_name', 'last_name', 'email');
-        }])->get()
-    ]);
-}
+        ]);
+    }
+ 
 }
